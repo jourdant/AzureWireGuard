@@ -60,9 +60,7 @@
     "vmSize": "[parameters('virtualMachineSku')]",
     "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('resourceName'))]",
     "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('resourceName'))]",
-    "ladMetricsResourceId": "[resourceId('Microsoft.Compute/virtualMachines', variables('resourceName'))]",
-    "AzureWireGuardScriptFolder": "CustomScripts",
-    "AzureWireGuardScriptFileName": "AzureWireGuard.sh"
+    "ladMetricsResourceId": "[resourceId('Microsoft.Compute/virtualMachines', variables('resourceName'))]"
   },
   "resources": [
     {

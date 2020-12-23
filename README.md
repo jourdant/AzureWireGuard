@@ -1,10 +1,3 @@
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjourdant%2FAzureWireGuard%2Fmaster%2FAzureWireGuard%2FLinuxVirtualMachine.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fjourdant%2FAzureWireGuard%2Fmaster%2FAzureWireGuard%2FLinuxVirtualMachine.json" target="_blank">
-    <img src="http://armviz.io/visualizebutton.png"/>
-</a>
-
 # AzureWireGuard - Azure ARM Template
 The quickest way to setup your own modern VPN server. 
 
@@ -31,23 +24,15 @@ The quickest way to setup your own modern VPN server.
 - Schedule a Reboot after 24 hours, to ensure all Ubuntu Server Upgrades are applied.
 
 # How to deploy ?
-Some knowledge of how [Azure ARM templates][azure-arm] work is really helpful. Azure ARM needs a Storage Account (_artifactsLocation) with access controlled via a Shared access signature (_artifactsLocationSasToken), to upload this template while deploying. If you use Visual Studio this Storage Account is created automatically in the Resource Group called ARM_Deploy_Staging.
+Some knowledge of how [Azure ARM templates][azure-arm] work is really helpful. The buttons below will launch the template deployment within the Azure portal.
 
-## Method 1 - From [Visual Studio][vs]
-- Clone the [git repository][git-repo].
-- Open the solution file in Visual Studio and deploy from Visual Studio.
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjourdant%2FAzureWireGuard%2Fmaster%2FAzureWireGuard%2FLinuxVirtualMachine.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fjourdant%2FAzureWireGuard%2Fmaster%2FAzureWireGuard%2FLinuxVirtualMachine.json" target="_blank">
+    <img src="http://armviz.io/visualizebutton.png"/>
+</a>
 
-## Method 2 - From [Azure Deploy][azure-deploy]
-- Create a storage account (you can also use an existing one) for ARM to upload this template. (_artifactsLocation)
-- Create a Shared access signature (SAS Token) for that storage account with full permissions. (_artifactsLocationSasToken)
-- Hit the [Deploy to Azure][azure-deploy-awg] button at the top. 
-- Fill the necessary parameters along with _artifactsLocation and _artifactsLocationSasToken from above and hit the Purchase button.
-
-[<img src="http://vijayshinva.github.io/img/posts/azurewireguard-sas.png" alt="Azure Wire Guard SAS" width="200"/>](http://vijayshinva.github.io/img/posts/azurewireguard-sas.png)
-[<img src="http://vijayshinva.github.io/img/posts/azurewireguard-portal.png" alt="Azure Wire Deploy" width="200"/>](http://vijayshinva.github.io/img/posts/azurewireguard-portal.png)
-
-## Other Methods
-- There are multiple ways to deploy an Azure ARM template like  [Powershell][azure-ps], [Azure CLI][azure-cli], [Azure Portal][azure-portal] and [REST API][azure-rest].
 
 # How to download WireGuard Client Configuration files ?
 - The client configuration files are named wg0-client-1.conf, wg0-client-2.conf, ..., wg0-client-9.conf and wg0-client-10.conf.
