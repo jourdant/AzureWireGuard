@@ -90,7 +90,7 @@
           {
             "name": "[concat('wireguard_', variables('wgListenPort'))]",
             "properties": {
-              "description": "[concat('Allow Wireguard ', variables('wgListenPort')]",
+              "description": "[concat('Allow Wireguard ', variables('wgListenPort'))]",
               "protocol": "Udp",
               "sourcePortRange": "*",
               "destinationPortRange": "[variables('wgListenPort')]",
