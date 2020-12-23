@@ -16,29 +16,41 @@
         "description": "Password for the Virtual Machine."
       }
     },
-    "_artifactsLocation": {
-      "type": "string",
+    "wgListenPort": {
+      "type": "int",
+      "defaultValue": 443,
       "metadata": {
-        "description": "Auto-generated container in staging storage account to receive post-build staging folder upload"
+        "description": "Port that wireguard server that listen on."
       }
     },
-    "_artifactsLocationSasToken": {
-      "type": "securestring",
+    "virtualMachineSku": {
+      "type": "string",
+      "defaultValue": "Standard_B1ms",
       "metadata": {
-        "description": "Auto-generated token to access _artifactsLocation"
+        "description": "Azure VM SKU like Standard_DS2_v2 or Standard_B1ms"
       }
-    }
+    },
+    "scriptUrl": {
+      "type": "string",
+      "metadata": {
+          "artifactsBaseUrl": "",
+          "description": "Choose where the AzureWireGuard.sh install script can be found"
+      },
+      "defaultValue": "https://raw.githubusercontent.com/jourdant/AzureWireGuard/master/AzureWireGuard/CustomScripts/AzureWireGuard.sh"
+  }
   },
   "variables": {
-    "imagePublisher": "Canonical",
-    "imageOffer": "UbuntuServer",
-    "ubuntuOSVersion": "18.04-LTS",
+    "imagePublisher": "canonical",
+    "imageOffer": "0001-com-ubuntu-server-focal",
+    "imageSku": "20_04-lts",
+    "imageVersion": "latest",
+
     "resourceName": "[uniqueString(subscription().subscriptionId, resourceGroup().id)]",
     "addressPrefix": "10.0.0.0/16",
     "subnetPrefix": "10.0.0.0/24",
     "diagnosticsStorageType": "Standard_LRS",
-    "publicIPAddressType": "Dynamic",
-    "vmSize": "Standard_DS2_v2",
+    "publicIPAddressType": "Static",
+    "vmSize": "[parameters('virtualMachineSku')]",
     "vnetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('resourceName'))]",
     "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('resourceName'))]",
     "ladMetricsResourceId": "[resourceId('Microsoft.Compute/virtualMachines', variables('resourceName'))]",
@@ -197,8 +209,8 @@
           "imageReference": {
             "publisher": "[variables('imagePublisher')]",
             "offer": "[variables('imageOffer')]",
-            "sku": "[variables('ubuntuOSVersion')]",
-            "version": "latest"
+            "sku": "[variables('imageSku')]",
+            "version": "[variables('imageVersion')]"
           },
           "osDisk": {
             "name": "[variables('resourceName')]",
@@ -234,9 +246,9 @@
             "settings": {
               "skipDos2Unix": false,
               "fileUris": [
-                "[concat(parameters('_artifactsLocation'), '/', variables('AzureWireGuardScriptFolder'), '/', variables('AzureWireGuardScriptFileName'), parameters('_artifactsLocationSasToken'))]"
+                "[parameters('scriptUrl')]"
               ],
-              "commandToExecute": "[concat('bash ', variables('AzureWireGuardScriptFileName'), ' ', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('resourceName'))).dnsSettings.fqdn, ' ', parameters('adminUsername'))]"
+              "commandToExecute": "[concat('bash AzureWireGuard.sh ', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('resourceName'))).dnsSettings.fqdn, ' ', parameters('adminUsername'), ' ', parameters('wgListenPort'))]"
             }
           }
         },

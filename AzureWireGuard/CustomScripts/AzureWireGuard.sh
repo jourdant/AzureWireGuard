@@ -64,7 +64,7 @@ cat > /etc/wireguard/wg0.conf << EOF
 Address = 10.13.13.1/24
 SaveConfig = true
 PrivateKey = $server_private_key
-ListenPort = 51820
+ListenPort = $3
 PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 
@@ -129,7 +129,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -146,7 +146,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -163,7 +163,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -180,7 +180,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -197,7 +197,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -214,7 +214,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -231,7 +231,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -248,7 +248,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -265,7 +265,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -282,7 +282,7 @@ DNS = 1.1.1.1
 [Peer]
 PublicKey =  $server_public_key
 PresharedKey = $preshared_key
-EndPoint = $1:51820
+EndPoint = $1:$3
 AllowedIps = 0.0.0.0/0, ::/0
 PersistentKeepAlive = 25
 
@@ -291,7 +291,7 @@ EOF
 chmod go+r /home/$2/wg0-client-10.conf
 
 ## Firewall 
-ufw allow 51820/udp
+ufw allow $3/udp
 ufw allow 22/tcp
 ufw enable
 
