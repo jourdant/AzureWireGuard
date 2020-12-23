@@ -82,12 +82,12 @@
       "properties": {
         "securityRules": [
           {
-            "name": "wireguard_51820",
+            "name": "[concat('wireguard_', variables('wgListenPort')]",
             "properties": {
-              "description": "Allow Wireguard 51820",
+              "description": "[concat('Allow Wireguard ', variables('wgListenPort')]",
               "protocol": "Udp",
               "sourcePortRange": "*",
-              "destinationPortRange": "51820",
+              "destinationPortRange": "[variables('wgListenPort')]",
               "sourceAddressPrefix": "Internet",
               "destinationAddressPrefix": "*",
               "access": "Allow",
