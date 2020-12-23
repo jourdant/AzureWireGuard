@@ -23,6 +23,13 @@
         "description": "Port that wireguard server that listen on."
       }
     },
+    "wgDnsServerIp": {
+      "type": "string",
+      "defaultValue": "168.63.129.16",
+      "metadata": {
+        "description": "Port that wireguard clients will use for DNS through the tunnel."
+      }
+    },
     "virtualMachineSku": {
       "type": "string",
       "defaultValue": "Standard_B1ms",
@@ -248,7 +255,7 @@
               "fileUris": [
                 "[parameters('scriptUrl')]"
               ],
-              "commandToExecute": "[concat('bash AzureWireGuard.sh ', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('resourceName'))).dnsSettings.fqdn, ' ', parameters('adminUsername'), ' ', parameters('wgListenPort'))]"
+              "commandToExecute": "[concat('bash AzureWireGuard.sh ', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('resourceName'))).dnsSettings.fqdn, ' ', parameters('adminUsername'), ' ', variables('wgListenPort'), ' ', variables('wgDnsServerIp'))]"
             }
           }
         },

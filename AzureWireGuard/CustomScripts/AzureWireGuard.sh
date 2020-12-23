@@ -124,7 +124,7 @@ cat > /home/$2/wg0-client-1.conf << EOF
 [Interface]
 PrivateKey = $client_one_private_key
 Address = 10.13.13.101/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
@@ -141,7 +141,7 @@ cat > /home/$2/wg0-client-2.conf << EOF
 [Interface]
 PrivateKey = $client_two_private_key
 Address = 10.13.13.102/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
@@ -158,7 +158,7 @@ cat > /home/$2/wg0-client-3.conf << EOF
 [Interface]
 PrivateKey = $client_three_private_key
 Address = 10.13.13.103/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
@@ -175,7 +175,7 @@ cat > /home/$2/wg0-client-4.conf << EOF
 [Interface]
 PrivateKey = $client_four_private_key
 Address = 10.13.13.104/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
@@ -192,7 +192,7 @@ cat > /home/$2/wg0-client-5.conf << EOF
 [Interface]
 PrivateKey = $client_five_private_key
 Address = 10.13.13.105/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
@@ -209,7 +209,7 @@ cat > /home/$2/wg0-client-6.conf << EOF
 [Interface]
 PrivateKey = $client_six_private_key
 Address = 10.13.13.106/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
@@ -226,7 +226,7 @@ cat > /home/$2/wg0-client-7.conf << EOF
 [Interface]
 PrivateKey = $client_seven_private_key
 Address = 10.13.13.107/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
@@ -243,7 +243,7 @@ cat > /home/$2/wg0-client-8.conf << EOF
 [Interface]
 PrivateKey = $client_eight_private_key
 Address = 10.13.13.108/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
@@ -260,7 +260,7 @@ cat > /home/$2/wg0-client-9.conf << EOF
 [Interface]
 PrivateKey = $client_nine_private_key
 Address = 10.13.13.109/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
@@ -277,7 +277,7 @@ cat > /home/$2/wg0-client-10.conf << EOF
 [Interface]
 PrivateKey = $client_ten_private_key
 Address = 10.13.13.110/32
-DNS = 1.1.1.1
+DNS = $4
 
 [Peer]
 PublicKey =  $server_public_key
