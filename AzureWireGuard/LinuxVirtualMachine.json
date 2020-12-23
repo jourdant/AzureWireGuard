@@ -34,7 +34,14 @@
       "type": "string",
       "defaultValue": "Standard_B1ms",
       "metadata": {
-        "description": "Azure VM SKU like Standard_DS2_v2 or Standard_B1ms"
+        "description": "Azure VM SKU like Standard_DS2_v2 or Standard_B1ms."
+      }
+    },
+    "enableAcceleratedNetworking": {
+      "type": "boolean",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Speeds up network performance, but requires a higher SKU of VM to run."
       }
     },
     "scriptUrl": {
@@ -188,7 +195,7 @@
         "networkSecurityGroup": {
           "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resourceName'))]"
         },
-        "enableAcceleratedNetworking": true
+        "enableAcceleratedNetworking": "[parameters('enableAcceleratedNetworking')]"
       }
     },
     {
