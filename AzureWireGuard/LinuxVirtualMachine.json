@@ -53,7 +53,7 @@
     "imageVersion": "latest",
 
     "wgListenPort": "[parameters('wgListenPort')]",
-    "resourceName": "[uniqueString(subscription().subscriptionId, resourceGroup().id)]",
+    "resourceName": "[concat('wg', uniqueString(subscription().subscriptionId, resourceGroup().id))]",
     "addressPrefix": "10.0.0.0/16",
     "subnetPrefix": "10.0.0.0/24",
     "diagnosticsStorageType": "Standard_LRS",
