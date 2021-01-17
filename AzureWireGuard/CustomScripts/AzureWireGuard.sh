@@ -10,7 +10,7 @@ sed -i -e 's/#net.ipv6.conf.all.forwarding.*/net.ipv6.conf.all.forwarding=1/g' /
 sysctl -p
 
 ## Install WireGurard
-add-apt-repository ppa:wireguard/wireguard -y 
+#add-apt-repository ppa:wireguard/wireguard -y 
 apt-get update -y 
 apt-get install linux-headers-$(uname -r) -y
 apt-get install wireguard -y
