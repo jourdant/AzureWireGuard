@@ -30,6 +30,13 @@
         "description": "Port that wireguard clients will use for DNS through the tunnel."
       }
     },
+    "wgTotalClients": {
+      "type": "int",
+      "defaultValue": 10,
+      "metadata": {
+        "description": "The total number of client tunnel config files to generate."
+      }
+    },
     "virtualMachineSku": {
       "type": "string",
       "defaultValue": "Standard_B1ms",
@@ -60,6 +67,8 @@
     "imageVersion": "latest",
 
     "wgListenPort": "[parameters('wgListenPort')]",
+    "wgDnsServerIp": "[parameters('wgDnsServerIp')]",
+    "wgTotalClients": "[parameters('wgTotalClients')]",
     "resourceName": "[concat('wg', uniqueString(subscription().subscriptionId, resourceGroup().id))]",
     "addressPrefix": "10.0.0.0/16",
     "subnetPrefix": "10.0.0.0/24",
@@ -261,7 +270,7 @@
               "fileUris": [
                 "[parameters('scriptUrl')]"
               ],
-              "commandToExecute": "[concat('bash AzureWireGuard.sh ', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('resourceName'))).dnsSettings.fqdn, ' ', parameters('adminUsername'), ' ', variables('wgListenPort'), ' ', variables('wgDnsServerIp'))]"
+              "commandToExecute": "[concat('bash AzureWireGuard.sh ', variables('wgTotalClients'), ' ', parameters('adminUsername'), ' ', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('resourceName'))).dnsSettings.fqdn, ' ', variables('wgListenPort'), ' ', variables('wgDnsServerIp'))]"
             }
           }
         },
