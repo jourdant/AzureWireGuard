@@ -45,7 +45,7 @@
       }
     },
     "enableAcceleratedNetworking": {
-      "type": "boolean",
+      "type": "bool",
       "defaultValue": false,
       "metadata": {
         "description": "Speeds up network performance, but requires a higher SKU of VM to run."
